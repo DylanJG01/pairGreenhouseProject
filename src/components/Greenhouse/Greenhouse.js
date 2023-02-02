@@ -6,7 +6,8 @@ import LightSwitch from './LightSwitch';
 import ClimateStats from './ClimateStats';
 
 function Greenhouse() {
-const {themeName} =useTheme()
+  const {themeName} = useTheme()
+  
   return (
     <section>
       {themeName === 'day' && <img className='greenhouse-img'
