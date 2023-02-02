@@ -1,11 +1,46 @@
 import ReactSlider from "react-slider";
 import './Thermometer.css';
-import  {ClimateContext, useClimate} from '../../context/ClimateContext'
+import { useClimate } from '../../context/ClimateContext'
+import { useState, useEffect } from 'react'
+
 function Thermometer() {
   const {temperature, setTemperature} = useClimate()
+  const [desiredTemperature, setDesiredTemperature] = useState(0)
+
+  // const timerFunction = setTimeout(() => {
+  //   temperature > desiredTemperature ? setTemperature(temperature - 1) : setTemperature(temperature + 1)
+  // }, 1000)
+
+  useEffect (() => {
+    console.log("!")
+    if (temperature !== desiredTemperature ){
+      const temperatureInterval = setTimeout(() => {
+        temperature > desiredTemperature ? setTemperature(temperature - 1) : setTemperature(temperature + 1)
+      }, 1000);
+    }
+    // return () => {
+    //   console.log("unmounting Cat component");
+    //   clearInterval(tempertureInterval);
+    // };
+  }, [desiredTemperature])
+
   function eventHandler(val){
     setTemperature(val)
   }
+
+  // useEffect(() => {
+  //   const colorInterval = setInterval(() => {
+  //     setColorNum((prevNum) => ++prevNum % colors.length);
+  //     console.log(colorNum, "right after setter");
+  //   }, 2000);
+
+  //   return () => {
+  //     console.log("unmounting Cat component");
+  //     clearInterval(colorInterval);
+  //   };
+  // }, []);
+
+
   return (
     <section>
       <h2>Thermometer</h2>
