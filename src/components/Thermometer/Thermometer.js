@@ -22,10 +22,11 @@ function Thermometer() {
     //   console.log("unmounting Cat component");
     //   clearInterval(tempertureInterval);
     // };
-  }, [desiredTemperature])
+  }, [desiredTemperature, temperature])
 
   function eventHandler(val){
-    setTemperature(val)
+    //setTemperature(val)
+    setDesiredTemperature(val)
   }
 
   // useEffect(() => {
@@ -47,7 +48,8 @@ function Thermometer() {
       <div className="actual-temp">Actual Temperature: {temperature}°F</div>
       <ReactSlider
        // value={Number(`${temperature}`)}
-       value = {temperature}
+       //value = {temperature}
+       value = {desiredTemperature}
         onAfterChange={(val) => eventHandler(val)}
         className="thermometer-slider"
         thumbClassName="thermometer-thumb"
